@@ -1,7 +1,8 @@
 
 entity Region {
 	regionId Long,
-	regionName String
+	regionName String,
+        regionDescription String
 }
 
 entity Country {

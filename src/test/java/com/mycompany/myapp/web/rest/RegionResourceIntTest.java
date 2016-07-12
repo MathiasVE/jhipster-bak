@@ -46,6 +46,8 @@ public class RegionResourceIntTest {
     private static final Long UPDATED_REGION_ID = 2L;
     private static final String DEFAULT_REGION_NAME = "AAAAA";
     private static final String UPDATED_REGION_NAME = "BBBBB";
+    private static final String DEFAULT_REGION_DESCRIPTION = "AAAAA";
+    private static final String UPDATED_REGION_DESCRIPTION = "BBBBB";
 
     @Inject
     private RegionRepository regionRepository;
@@ -75,6 +77,7 @@ public class RegionResourceIntTest {
         region = new Region();
         region.setRegionId(DEFAULT_REGION_ID);
         region.setRegionName(DEFAULT_REGION_NAME);
+        region.setRegionDescription(DEFAULT_REGION_DESCRIPTION);
     }
 
     @Test
@@ -95,6 +98,7 @@ public class RegionResourceIntTest {
         Region testRegion = regions.get(regions.size() - 1);
         assertThat(testRegion.getRegionId()).isEqualTo(DEFAULT_REGION_ID);
         assertThat(testRegion.getRegionName()).isEqualTo(DEFAULT_REGION_NAME);
+        assertThat(testRegion.getRegionDescription()).isEqualTo(DEFAULT_REGION_DESCRIPTION);
     }
 
     @Test
@@ -109,7 +113,8 @@ public class RegionResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(region.getId().intValue())))
                 .andExpect(jsonPath("$.[*].regionId").value(hasItem(DEFAULT_REGION_ID.intValue())))
-                .andExpect(jsonPath("$.[*].regionName").value(hasItem(DEFAULT_REGION_NAME.toString())));
+                .andExpect(jsonPath("$.[*].regionName").value(hasItem(DEFAULT_REGION_NAME.toString())))
+                .andExpect(jsonPath("$.[*].regionDescription").value(hasItem(DEFAULT_REGION_DESCRIPTION.toString())));
     }
 
     @Test
@@ -124,7 +129,8 @@ public class RegionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(region.getId().intValue()))
             .andExpect(jsonPath("$.regionId").value(DEFAULT_REGION_ID.intValue()))
-            .andExpect(jsonPath("$.regionName").value(DEFAULT_REGION_NAME.toString()));
+            .andExpect(jsonPath("$.regionName").value(DEFAULT_REGION_NAME.toString()))
+            .andExpect(jsonPath("$.regionDescription").value(DEFAULT_REGION_DESCRIPTION.toString()));
     }
 
     @Test
@@ -147,6 +153,7 @@ public class RegionResourceIntTest {
         updatedRegion.setId(region.getId());
         updatedRegion.setRegionId(UPDATED_REGION_ID);
         updatedRegion.setRegionName(UPDATED_REGION_NAME);
+        updatedRegion.setRegionDescription(UPDATED_REGION_DESCRIPTION);
 
         restRegionMockMvc.perform(put("/api/regions")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -159,6 +166,7 @@ public class RegionResourceIntTest {
         Region testRegion = regions.get(regions.size() - 1);
         assertThat(testRegion.getRegionId()).isEqualTo(UPDATED_REGION_ID);
         assertThat(testRegion.getRegionName()).isEqualTo(UPDATED_REGION_NAME);
+        assertThat(testRegion.getRegionDescription()).isEqualTo(UPDATED_REGION_DESCRIPTION);
     }
 
     @Test

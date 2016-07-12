@@ -21,6 +21,7 @@
                     <th><span translate="global.field.id">ID</span></th>
                     <th><span translate="appApp.region.regionId">Region Id</span></th>
                     <th><span translate="appApp.region.regionName">Region Name</span></th>
+                    <th><span translate="appApp.region.regionDescription">Region Description</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td><a ui-sref="region-detail({id:region.id})">{{region.id}}</a></td>
                     <td>{{region.regionId}}</td>
                     <td>{{region.regionName}}</td>
+                    <td>{{region.regionDescription}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

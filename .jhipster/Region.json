@@ -10,6 +10,11 @@
       "fieldId": 2,
       "fieldName": "regionName",
       "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "regionDescription",
+      "fieldType": "String"
     }
   ],
   "changelogDate": "20160712120126",

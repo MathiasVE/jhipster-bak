@@ -27,6 +27,9 @@ public class Region implements Serializable {
     @Column(name = "region_name")
     private String regionName;
 
+    @Column(name = "region_description")
+    private String regionDescription;
+
     public Long getId() {
         return id;
     }
@@ -49,6 +52,14 @@ public class Region implements Serializable {
 
     public void setRegionName(String regionName) {
         this.regionName = regionName;
+    }
+
+    public String getRegionDescription() {
+        return regionDescription;
+    }
+
+    public void setRegionDescription(String regionDescription) {
+        this.regionDescription = regionDescription;
     }
 
     @Override
@@ -77,6 +88,7 @@ public class Region implements Serializable {
             "id=" + id +
             ", regionId='" + regionId + "'" +
             ", regionName='" + regionName + "'" +
+            ", regionDescription='" + regionDescription + "'" +
             '}';
     }
 }

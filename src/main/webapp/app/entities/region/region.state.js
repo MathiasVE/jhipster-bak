@@ -73,6 +73,7 @@
                             return {
                                 regionId: null,
                                 regionName: null,
+                                regionDescription: null,
                                 id: null
                             };
                         }
