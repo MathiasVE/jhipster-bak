@@ -6,7 +6,7 @@ docker.image('maven:3.3.3-jdk-8').inside {
   sh 'mvn -B clean test'
  */
   stage 'Build docker image'
-  if("$BRANCH_NAME" == "development") {
+  if(env.BRANCH_NAME == "development") {
     sh './mvnw package -Pdev docker:build'
   }
 }
