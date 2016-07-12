@@ -1,0 +1,26 @@
+
+<div>
+    <h2><span translate="appApp.department.detail.title">Department</span> {{vm.department.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="appApp.department.departmentId">Department Id</span></dt>
+        <dd>
+            <span>{{vm.department.departmentId}}</span>
+        </dd>
+        <dt><span translate="appApp.department.departmentName">Department Name</span></dt>
+        <dd>
+            <span>{{vm.department.departmentName}}</span>
+        </dd>
+        <dt><span translate="appApp.department.location">Location</span></dt>
+        <dd>
+            <a ui-sref="location-detail({id:vm.department.location.id})">{{vm.department.location.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
