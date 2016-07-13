@@ -7,7 +7,7 @@ node {
     stage 'Install'
     sh 'mvn -B clean install'
     stage 'Test'
-    sh 'mvn -B clean test'
+    sh 'mvn -B test'
     stage 'Build docker image'
     if(env.BRANCH_NAME == "development") {
       sh './mvnw package -Pdev docker:build'
