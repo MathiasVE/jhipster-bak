@@ -1,4 +1,4 @@
-node('linux') {
+node {
   stage 'fetch code'
   git 'https://github.com/MathiasVE/jhipster-demo'
   def maven = docker.image('maven:3.3.3-jdk-8')
