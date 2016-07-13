@@ -26,6 +26,6 @@ node {
     sh 'sed -i "s/8080:8080/80:8080/g" src/main/docker/app.yml'
   }
   if(env.BRANCH_NAME != "master") {
-    sh "docker-compose -d --name app_${env.BRANCH_NAME} -f src/main/docker/app.yml up"
+    sh "docker-compose -p app_${env.BRANCH_NAME} -f src/main/docker/app.yml up -d"
   }
 }
