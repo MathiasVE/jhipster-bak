@@ -9,15 +9,18 @@ node {
   
   maven.inside {
     stage 'Install'
-    // sh 'mvn -B clean install'
-    stage 'Test'
-    // sh 'mvn -B test'
+    sh 'mvn -B clean install'
+    if(env.BRANCH_NAME == "testing") {
+      stage 'Test'
+      sh 'mvn -B test'
+    }
   }
 
   jhipster.inside {
     stage 'Prepare js/css'
     // Due to a bug in npm we neem to keep installing until it succeeds
-    sh 'NPM=-1; until [ ${NPM} -eq 0 ]; do npm install --no-bin-links; NPM=$?; done'
+    sh 'NPM=-1; while [ ${NPM} -ne 0 ]; do npm install --no-bin-links; NPM=$?; done'
+    // Bad dependency declared so we take the latest version ignoring the unsafe warnings
     sh 'npm install --unsafe-perm node-sass --no-bin-links'
     sh 'gulp build'
   }
