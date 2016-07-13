@@ -13,7 +13,7 @@ node {
     def jhipster = docker.image('jhipster/jhipster')
     jhipster.pull() 
     jhipster.inside {
-      sh 'npm install gulp'
+      sh 'npm install gulp --no-bin-links'
       sh 'gulp build'
     }
   maven.inside {
