@@ -9,15 +9,16 @@ node {
   
   maven.inside {
     stage 'Install'
-    sh 'mvn -B clean install'
+    // sh 'mvn -B clean install'
     stage 'Test'
-    sh 'mvn -B test'
+    // sh 'mvn -B test'
   }
 
   jhipster.inside {
     stage 'Prepare js/css'
     // Due to a bug in npm we neem to keep installing until it succeeds
     sh 'NPM=-1; until [ ${NPM} -eq 0 ]; do npm install --no-bin-links; NPM=$?; done'
+    sh 'npm install --unsafe-perm node-sass --no-bin-links'
     sh 'gulp build'
   }
  
