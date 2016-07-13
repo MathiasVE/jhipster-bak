@@ -16,6 +16,16 @@ node {
     }
   }
   stage 'Deploy'
-  sh 'sed -i "s/8080/5000/g" src/main/docker/app.yml'
-  sh 'docker-compose -f src/main/docker/app.yml up'
+  if(env.BRANCH_NAME == "development") {
+    sh 'sed -i "s/8080:8080/5000:8080/g" src/main/docker/app.yml'
+    sh 'sed -i "s/5432:5432/5001:5432/g" src/main/docker/postgresql.yml'
+  } else if (env.BRANCH_NAME == "testing") {
+    sh 'sed -i "s/8080:8080/5100:8080/g" src/main/docker/app.yml'
+    sh 'sed -i "s/5432:5432/5101:5432/g" src/main/docker/postgresql.yml'
+  } else {
+    sh 'sed -i "s/8080:8080/80:8080/g" src/main/docker/app.yml'
+  }
+  if(env.BRANCH_NAME != "master") {
+    sh "docker-compose -d --name app_${env.BRANCH_NAME} -f src/main/docker/app.yml up"
+  }
 }
