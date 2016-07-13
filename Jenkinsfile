@@ -1,9 +1,11 @@
 node {
   stage 'fetch code'
   git 'https://github.com/MathiasVE/jhipster-demo'
-  def jhipster = docker.image('jhipster/jhipster')
-  jhipster.pull() 
-  jhipster.inside {
+  def maven = docker.image('maven:3.3.3-jdk-8')
+  maven.pull()
+  // def jhipster = docker.image('jhipster/jhipster')
+  // jhipster.pull() 
+  maven.inside {
     stage 'Install'
     sh 'mvn -B clean install'
     stage 'Test'
