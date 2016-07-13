@@ -16,7 +16,7 @@ node {
 
   jhipster.inside {
     stage 'Prepare js/css'
-    sh 'npm install gulp --save-dev --no-bin-links'
+    sh 'npm install --no-bin-links'
     sh 'gulp build'
   }
  
