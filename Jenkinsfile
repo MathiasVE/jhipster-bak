@@ -16,7 +16,9 @@ node {
     }
   }
   stage 'Prepare js/css'
-  docker.image('jhipster/jhipster').inside {
+  def jhipster = docker.image('jhipster/jhipster')
+  jhipster.pull() 
+  jhipster.inside {
     sh 'gulp build'
   }
   stage 'Deploy'
