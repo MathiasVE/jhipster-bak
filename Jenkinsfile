@@ -8,6 +8,7 @@ node {
 //    sh 'mvn -B clean install'
     stage 'Test'
 //    sh 'mvn -B test'
+  }
     stage 'Prepare js/css'
     def jhipster = docker.image('jhipster/jhipster')
     jhipster.pull() 
@@ -15,6 +16,7 @@ node {
       sh 'npm install gulp'
       sh 'gulp build'
     }
+  maven.inside {
     stage 'Build docker image'
     if(env.BRANCH_NAME == "development") {
       sh './mvnw package -Pdev docker:build'
