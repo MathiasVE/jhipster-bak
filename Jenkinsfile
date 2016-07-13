@@ -17,7 +17,7 @@ node {
   jhipster.inside {
     stage 'Prepare js/css'
     // Due to a bug in npm we neem to keep installing until it succeeds
-    sh 'NPM=-1; until [ ${NPM} -eq 0 ]; do npm install --no-bin-links; let NPM=$?; done'
+    sh 'NPM=-1; until [ ${NPM} -eq 0 ]; do npm install --no-bin-links; NPM=$?; done'
     sh 'gulp build'
   }
  
