@@ -15,6 +15,8 @@ node {
       sh './mvnw package -Pprod docker:build'
     }
   }
+  stage 'Generate client files'
+  sh 'gulp build'
   stage 'Deploy'
   if(env.BRANCH_NAME == "development") {
     sh 'sed -i "s/8080:8080/5000:8080/g" src/main/docker/app.yml'
