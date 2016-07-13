@@ -5,21 +5,22 @@ node {
   maven.pull()
   maven.inside {
     stage 'Install'
-    sh 'mvn -B clean install'
+//    sh 'mvn -B clean install'
     stage 'Test'
-    sh 'mvn -B test'
+//    sh 'mvn -B test'
+    stage 'Prepare js/css'
+    def jhipster = docker.image('jhipster/jhipster')
+    jhipster.pull() 
+    jhipster.inside {
+      sh 'npm install gulp'
+      sh 'gulp build'
+    }
     stage 'Build docker image'
     if(env.BRANCH_NAME == "development") {
       sh './mvnw package -Pdev docker:build'
     } else {
       sh './mvnw package -Pprod docker:build'
     }
-  }
-  stage 'Prepare js/css'
-  def jhipster = docker.image('jhipster/jhipster')
-  jhipster.pull() 
-  jhipster.inside {
-    sh 'gulp build'
   }
   stage 'Deploy'
   if(env.BRANCH_NAME == "development") {
