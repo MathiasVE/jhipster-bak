@@ -10,5 +10,6 @@ docker.image('maven:3.3.3-jdk-8').inside {
   } else {
     sh './mvnw package -Pprod docker:build'
   }
-  sh 'docker-compose -f src/main/docker/app.yml up'
 }
+stage 'Deploy'
+sh 'docker-compose -f src/main/docker/app.yml up'
