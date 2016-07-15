@@ -47,4 +47,5 @@ node {
   if(env.BRANCH_NAME != "master") {
     sh "docker-compose -p app_${env.BRANCH_NAME} -f src/main/docker/app.yml up -d"
   }
+
 }
